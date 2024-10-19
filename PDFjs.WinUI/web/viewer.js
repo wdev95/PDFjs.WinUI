@@ -1270,7 +1270,7 @@
 						rotation: null,
 						sidebarView: _ui_utils.SidebarView.UNKNOWN,
 						scrollMode: _ui_utils.ScrollMode.UNKNOWN,
-						spreadMode: _ui_utils.SpreadMode.UNKNOWN
+						//spreadMode: _ui_utils.SpreadMode.UNKNOWN
 					}).catch(() => {
 						return Object.create(null);
 					});
@@ -1299,7 +1299,7 @@
 
 							let scrollMode = _app_options.AppOptions.get("scrollModeOnLoad");
 
-							let spreadMode = _app_options.AppOptions.get("spreadModeOnLoad");
+							//let spreadMode = _app_options.AppOptions.get("spreadModeOnLoad");
 
 							if (stored.page && viewOnLoad !== ViewOnLoad.INITIAL) {
 								hash = `page=${stored.page}&zoom=${zoom || stored.zoom},` + `${stored.scrollLeft},${stored.scrollTop}`;
@@ -1313,9 +1313,9 @@
 									scrollMode = stored.scrollMode | 0;
 								}
 
-								if (spreadMode === _ui_utils.SpreadMode.UNKNOWN) {
-									spreadMode = stored.spreadMode | 0;
-								}
+								//if (spreadMode === _ui_utils.SpreadMode.UNKNOWN) {
+								//	spreadMode = stored.spreadMode | 0;
+								//}
 							}
 
 							if (pageMode && sidebarView === _ui_utils.SidebarView.UNKNOWN) {
@@ -1324,14 +1324,14 @@
 
 							if (pageLayout && scrollMode === _ui_utils.ScrollMode.UNKNOWN && spreadMode === _ui_utils.SpreadMode.UNKNOWN) {
 								const modes = (0, _ui_utils.apiPageLayoutToViewerModes)(pageLayout);
-								spreadMode = modes.spreadMode;
+								//spreadMode = modes.spreadMode;
 							}
 
 							this.setInitialView(hash, {
 								rotation,
 								sidebarView,
 								scrollMode,
-								spreadMode
+								//spreadMode
 							});
 							this.eventBus.dispatch("documentinit", {
 								source: this
@@ -15704,7 +15704,10 @@ window.openPdfAsBase64 = function (base64) {
 	}
 	PDFViewerApplication.open(bytes);
 	PDFViewerApplication.currentScaleValue = "page-width";
+	PDFViewerApplication.setViewerModes(0, 1);
 	PDFViewerApplication.update();
+	PDFViewerApplication.setViewerModes(0, 1);
+	PDFViewerApplication.store?.set("scrollMode", 1).catch(() => { });
 };
 
 setTheme = function (theme) {

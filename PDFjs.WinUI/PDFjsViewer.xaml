@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" MinWidth="225" >
-	<Grid SizeChanged="Grid_SizeChanged" >
+	<Grid x:Name="ControlGrid" SizeChanged="Grid_SizeChanged" >
 		<WebView2 x:Name="PDFjsViewerWebView" x:FieldModifier="public"   Loading="PDFjsViewerWebView_Loading" CoreWebView2Initialized="PDFjsViewerWebView_CoreWebView2Initialized" >
 			
 		</WebView2>

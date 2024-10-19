@@ -131,6 +131,7 @@ namespace PDFjs.WinUI
 
 		private async void updateTheme()
 		{
+			await PDFjsViewerWebView.EnsureCoreWebView2Async();
 			await PDFjsViewerWebView.ExecuteScriptAsync($"setTheme('{ActualTheme.ToString()}')");
 		}
 
@@ -145,16 +146,19 @@ namespace PDFjs.WinUI
 		{
 			try
 			{
-				while (!loaded)
-				{
-					await Task.Delay(50);
-				}
 				File = pdffile;
 				Stream stream = await pdffile.OpenStreamForReadAsync();
 				byte[] buffer = new byte[stream.Length];
 				stream.Read(buffer, 0, (int)stream.Length);
 				var asBase64 = Convert.ToBase64String(buffer);
 				await PDFjsViewerWebView.ExecuteScriptAsync("window.openPdfAsBase64('" + asBase64 + "')");
+				//await Task.Delay(500);
+				//int spreadmode = ControlGrid.ActualSize.X < 1000 ? 0 : 1;
+				//if (spreadmode != currentSpreadMode)
+				//{
+				//	await PDFjsViewerWebView.ExecuteScriptAsync($"PDFViewerApplication.pdfViewer.spreadMode = {spreadmode};");
+				//	currentSpreadMode = spreadmode;
+				//}
 				return true;
 
 			}
@@ -181,6 +185,7 @@ namespace PDFjs.WinUI
 		{
 			try
 			{
+				await PDFjsViewerWebView.EnsureCoreWebView2Async();
 				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name);
 				var converter = TypeDescriptor.GetConverter(typeof(T));
 				
@@ -196,6 +201,7 @@ namespace PDFjs.WinUI
 		{
 			try
 			{
+				await PDFjsViewerWebView.EnsureCoreWebView2Async();
 				string returnstring = await PDFjsViewerWebView.ExecuteScriptAsync(service + name + $" = {value ?? string.Empty}");
 				return true;
 			}
@@ -220,6 +226,7 @@ namespace PDFjs.WinUI
 
 		public async Task<bool> ScrollToPosition(int page, double yoffset, double depth = 0)
 		{
+			await PDFjsViewerWebView.EnsureCoreWebView2Async();
 			await Set("page", page.ToString());
 			await PDFjsViewerWebView.ExecuteScriptAsync($"BaseViewer._resetCurrentPageView();");
 

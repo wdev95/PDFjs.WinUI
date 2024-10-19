@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+			<WindowsSdkPackageVersion>10.0.22621.38</WindowsSdkPackageVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+			<Platforms>x86;x64;ARM64</Platforms>
     <RootNamespace>PDFjs.WinUI</RootNamespace>
     <UseWinUI>true</UseWinUI>
-    <Platforms>x86;x64;ARM64</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <WarningLevel>3</WarningLevel>
@@ -785,7 +786,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="web\viewer.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="web\viewer.js.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -794,8 +795,8 @@
 
   <ItemGroup>
       <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
-      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.231008000" />
-      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PDFjs.WinUI.TestApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PDFjs.WinUI.TestApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

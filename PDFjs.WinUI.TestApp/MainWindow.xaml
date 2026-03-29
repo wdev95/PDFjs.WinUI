@@ -1,0 +1,27 @@
+﻿<Window
+    x:Class="PDFjs.WinUI.TestApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PDFjs.WinUI.TestApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:pdfjs="using:PDFjs.WinUI" 
+    mc:Ignorable="d" >
+	<Page   >
+		<Page.Resources>
+			<local:ViewModel x:Name="VM" x:Key="VM"></local:ViewModel>
+		</Page.Resources>
+		<Grid DataContext="{StaticResource VM}" x:DefaultBindMode="OneWay" RequestedTheme="{Binding RequestedTheme}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="4" Padding="4">
+				<ComboBox ItemsSource="{Binding ThemeOptions}" SelectedItem="{Binding Theme, Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+				<Button Content="Open PDF file"  Click="Btn_Open"/>
+				<NumberBox Value="{Binding Page, Mode=TwoWay}"  SpinButtonPlacementMode="Inline" />
+			</StackPanel>
+			<pdfjs:PDFjsViewer Grid.Row="1" Name="Viewer" Visibility="{Binding IsInternalViewerActive}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  RequestedTheme="{Binding RequestedTheme}" Theme="{Binding Theme}" Page="{Binding Page, Mode=TwoWay}" />
+		</Grid>
+	</Page>
+</Window>
